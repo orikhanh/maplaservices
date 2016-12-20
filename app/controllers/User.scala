@@ -9,9 +9,8 @@ import play.api.libs.json.Json
 
 class User extends Controller {
   def add(userEmail: String, password: String) = Action {
-    // TODO: Add favourite
-    val favourite = User.addUser(userEmail, password)
-    Ok(Json.obj("result" -> favourite))
+    val user = User.addUser(userEmail, password)
+    Ok(Json.obj("result" -> user))
     //Ok(Json.obj("result"->user(userEmail,password)))
   }
   def remove(userEmail: String, password: String) = Action {
@@ -21,18 +20,18 @@ class User extends Controller {
   }
 
   def find(userEmail: String, password: String) = Action {
-    val oFavourite = User.find(userEmail, password)
+    val oUser = User.find(userEmail, password)
 
-    oFavourite match {
+    oUser match {
       case None => NotFound(Json.obj("error" -> "NOT_FOUND"))
-      case Some(favourite) => Ok(Json.obj("result" -> favourite))
+      case Some(user) => Ok(Json.obj("result" -> user))
     }
   }
 
   def findAll(userEmail: String) = Action {
-    val allFavourites = User.findAllByUser(userEmail)
+    val allUser = User.findAllByUser(userEmail)
 
-    Ok(Json.obj("result" -> allFavourites))
+    Ok(Json.obj("result" -> allUser))
   }
 
 }
