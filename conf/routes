@@ -4,8 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET     /listPlaces                 controllers.Application.listPlaces
-# Favourite a studio
+# User
 POST    /users/:userEmail/:password   controllers.User.add(userEmail: String, password: String)
 DELETE  /users/:userEmail/:password   controllers.User.remove(userEmail: String, password: String)
 GET     /users/:userEmail/:password   controllers.User.find(userEmail: String, password: String)
@@ -14,3 +13,4 @@ GET     /users/:userEmail             controllers.User.findAll(userEmail: String
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
+    

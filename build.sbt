@@ -1,8 +1,8 @@
-name := "mapla"
+name := "maplaservice"
 
 version := "1.0"
 
-lazy val `mapla` = (project in file(".")).enablePlugins(PlayScala)
+lazy val `maplaservice` = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.7"
 
