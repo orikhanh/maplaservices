@@ -5,10 +5,10 @@
 # Home page
 GET     /                           controllers.Application.index
 # User
-POST    /users/:userEmail/:password   controllers.User.add(userEmail: String, password: String)
-DELETE  /users/:userEmail/:password   controllers.User.remove(userEmail: String, password: String)
-GET     /users/:userEmail/:password   controllers.User.find(userEmail: String, password: String)
-GET     /users/:userEmail             controllers.User.findAll(userEmail: String)
+POST    /users/:userEmail/:password   controllers.UserController.add(userEmail: String, password: String)
+DELETE  /users/:userEmail/:password   controllers.UserController.remove(userEmail: String, password: String)
+GET     /users/:userEmail/:password   controllers.UserController.find(userEmail: String, password: String)
+GET     /users/:userEmail             controllers.UserController.findAll(userEmail: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

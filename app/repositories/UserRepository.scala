@@ -1,14 +1,28 @@
-package models.dao
+package repositories
 
-import models.User
-import play.api.db._
 import anorm._
+import play.api.db.{DB}
+import domains.User
 import play.api.Play.current
+
 /**
   * Created by tttien on 12/18/2016.
   */
-object UserDAO {
-  def create(user: User) =
+
+trait UserRepository{
+
+  def create(user: User)
+
+  def delete(user: User)
+
+  def checkExits(user: User): Boolean
+
+  def findAll(email: String):List[User]
+
+}
+
+class UserRepositoryImpl extends UserRepository{
+  override def create(user: User) =
     DB.withConnection { implicit c =>
       SQL(
         """
@@ -21,7 +35,7 @@ object UserDAO {
       ).executeInsert()
     }
 
-  def delete(user: User) = {
+  override def delete(user: User) = {
     DB.withConnection { implicit c =>
       SQL(
         """
@@ -35,7 +49,7 @@ object UserDAO {
     }
   }
 
-  def exists(user: User): Boolean = {
+  override def checkExits(user: User): Boolean = {
     DB.withConnection { implicit c =>
       val result = SQL(
         """
@@ -51,7 +65,7 @@ object UserDAO {
     }
   }
 
-  def index(userEmail: String): List[User] = {
+  override def findAll(userEmail: String): List[User] = {
     DB.withConnection { implicit c =>
       val results = SQL(
         """
