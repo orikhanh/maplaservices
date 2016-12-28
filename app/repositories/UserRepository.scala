@@ -71,7 +71,8 @@ class UserRepositoryImpl extends UserRepository{
         """
           | SELECT `user_email`, `password`
           | FROM `user`
-          | WHERE `user_email`={user_email};
+          | WHERE `user_email` IS NOT NULL
+          | and `password` IS NOT NULL;
         """.stripMargin).on(
         "user_email" -> userEmail
       ).apply()
